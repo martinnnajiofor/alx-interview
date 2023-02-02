@@ -1,17 +1,11 @@
 #!/usr/bin/python3
 
 def canUnlockAll(boxes):
-    position = 0
-    unlocked = {}
-
-    for box in boxes:
-        if len(box) == 0 or position == 0:
-            unlocked[position] = "always_unlocked"
-        for key in box:
-            if key < len(boxes) and key != position:
-                unlocked[key] = key
-        if len(unlocked) == len(boxes):
-            return True
-        position += 1
+    myKeys = [0]
+    for key in myKeys:
+        for boxKey in boxes[key]:
+            if boxKey not in myKeys and boxKey < len(boxes):
+                myKeys.append(boxKey)
+    if len(myKeys) == len(boxes):
+        return True
     return False
-
